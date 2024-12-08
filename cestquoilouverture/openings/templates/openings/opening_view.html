@@ -1,13 +1,28 @@
-<!-- templates/openings/opening_view.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess Openings</title>
+    <title>C'est quoi l'ouverture</title>
+    <link rel="stylesheet" href="{% static 'openings/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #chess-board svg {
+            margin: auto;
+            display: block;
+        }
+        button {
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Visualisez les Ouvertures d'Échecs</h1>
+    <h1>C'est quoi l'ouverture</h1>
     <form id="opening-form" method="POST">
         {% csrf_token %}
         <label for="opening-select">Choisir une ouverture :</label>
@@ -16,20 +31,60 @@
                 <option value="{{ opening.id }}">{{ opening.name }}</option>
             {% endfor %}
         </select>
+        <button type="button" id="prev-move-btn">Précédent</button>
         <button type="button" id="next-move-btn">Suivant</button>
     </form>
     <div id="chess-board"></div>
 
     <script>
-        document.getElementById('next-move-btn').addEventListener('click', async () => {
+        let currentIndex = 0; // Index actuel de la position
+
+        const updateBoard = async (newIndex) => {
             const form = document.getElementById('opening-form');
             const formData = new FormData(form);
-            const response = await fetch('', { method: 'POST', body: formData });
-            const data = await response.json();
-            
-            document.getElementById('chess-board').innerHTML = data.svg;
-            formData.set('position_index', data.next_index);
+            formData.append('position_index', newIndex);
+
+            try {
+                const response = await fetch('', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                if (data.error) {
+                    alert('Erreur : ' + data.error);
+                } else {
+                    // Met à jour le plateau d'échecs et les index
+                    document.getElementById('chess-board').innerHTML = data.svg;
+                    currentIndex = newIndex;
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('Une erreur est survenue. Consultez la console pour plus de détails.');
+            }
+        };
+
+        // Gestion des boutons Précédent et Suivant
+        document.getElementById('prev-move-btn').addEventListener('click', () => {
+            updateBoard(Math.max(currentIndex - 1, 0));
         });
+
+        document.getElementById('next-move-btn').addEventListener('click', () => {
+            updateBoard(currentIndex + 1);
+        });
+
+        // Charger la position initiale
+        document.getElementById('opening-select').addEventListener('change', () => {
+            currentIndex = 0;
+            updateBoard(currentIndex);
+        });
+
+        // Initialiser l'échiquier avec la première ouverture
+        updateBoard(currentIndex);
     </script>
 </body>
 </html>
