@@ -1,0 +1,35 @@
+<!-- templates/openings/opening_view.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Openings</title>
+</head>
+<body>
+    <h1>Visualisez les Ouvertures d'Échecs</h1>
+    <form id="opening-form" method="POST">
+        {% csrf_token %}
+        <label for="opening-select">Choisir une ouverture :</label>
+        <select id="opening-select" name="opening_id">
+            {% for opening in openings %}
+                <option value="{{ opening.id }}">{{ opening.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="button" id="next-move-btn">Suivant</button>
+    </form>
+    <div id="chess-board"></div>
+
+    <script>
+        document.getElementById('next-move-btn').addEventListener('click', async () => {
+            const form = document.getElementById('opening-form');
+            const formData = new FormData(form);
+            const response = await fetch('', { method: 'POST', body: formData });
+            const data = await response.json();
+            
+            document.getElementById('chess-board').innerHTML = data.svg;
+            formData.set('position_index', data.next_index);
+        });
+    </script>
+</body>
+</html>
