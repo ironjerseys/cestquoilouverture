@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Inject secrets into environment variables
+      # Inject secrets into environment variables for the build job
       - name: Set environment variables
         run: |
           echo "DB_USER=${{ secrets.DB_USER }}" >> $GITHUB_ENV
@@ -59,6 +59,7 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
+      # Inject secrets into environment variables for the deploy job
       - name: Set environment variables for deployment
         run: |
           echo "DB_USER=${{ secrets.DB_USER }}" >> $GITHUB_ENV
