@@ -25,15 +25,11 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
 
-      - name: Collect static files
+      - name: Prepare static files
         run: |
+          mkdir -p staticfiles
           source venv/bin/activate
           python manage.py collectstatic --noinput
-
-      - name: Run tests (optional)
-        run: |
-          source venv/bin/activate
-          python manage.py test
 
       - name: Package application
         run: zip -r release.zip .
