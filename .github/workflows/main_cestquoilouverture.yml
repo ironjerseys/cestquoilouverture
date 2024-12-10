@@ -26,12 +26,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Inject secrets into environment variables for the build job
-      - name: Set environment variables
-        env:
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
@@ -48,7 +42,6 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Download artifact from build job
@@ -59,12 +52,6 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      # Inject secrets into environment variables for the deploy job
-      - name: Set environment variables for deployment
-        env:
-            DB_USER: ${{ secrets.DB_USER }}
-            DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
@@ -72,3 +59,6 @@ jobs:
           app-name: 'cestquoilouverture'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3280D8060C594471BBBC8FDCBC693576 }}
+        env:
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
