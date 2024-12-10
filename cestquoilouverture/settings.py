@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'ironjerseys_cestquoilouverture', 
         'HOST': 'postgresql-ironjerseys.alwaysdata.net',  
         'PORT': '5432', 
-         'USER': os.getenv('DB_USER', 'default_user'), 
+        'USER': os.getenv('DB_USER', 'default_user'), 
         'PASSWORD': os.getenv('DB_PASSWORD', 'default_password')
     }
 }
