@@ -86,16 +86,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ironjerseys_cestquoilouverture',
-        'USER': '<DB_USER>',
-        'PASSWORD': '<DB_PASSWORD>',
+        'USER': '<DBUSER>',
+        'PASSWORD': '<DBPASSWORD>',
         'HOST': 'postgresql-ironjerseys.alwaysdata.net',
         'PORT': '5432',
     }
 }
 
-logger = logging.getLogger(__name__)
-logger.info(f"DB_USER: {os.getenv('DB_USER')}")
-logger.info(f"DB_PASSWORD: {'SET' if os.getenv('DB_PASSWORD') else 'NOT SET'}")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

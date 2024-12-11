@@ -5,3 +5,4 @@ cestquoilouverture/.env
 # Ignorer les fichiers compilés Python
 __pycache__/
 *.pyc
+cestquoilouverture/__pycache__/settings.cpython-312.pyc
