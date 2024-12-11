@@ -87,8 +87,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ironjerseys_cestquoilouverture',
-        'USER': config('DBUSER'),
-        'PASSWORD': config('DBPASSWORD'),
+        'USER': 'DBUSER',
+        'PASSWORD': 'DBPASSWORD',
         'HOST': 'postgresql-ironjerseys.alwaysdata.net',
         'PORT': '5432',
     }
