@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import logging
 import os
 from pathlib import Path
 
@@ -92,7 +93,9 @@ DATABASES = {
     }
 }
 
-
+logger = logging.getLogger(__name__)
+logger.info(f"DB_USER: {os.getenv('DB_USER')}")
+logger.info(f"DB_PASSWORD: {'SET' if os.getenv('DB_PASSWORD') else 'NOT SET'}")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
