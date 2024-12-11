@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import logging
-from decouple import config
 import os
 from pathlib import Path
 
@@ -87,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ironjerseys_cestquoilouverture',
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
+        'USER': '<DB_USER>',
+        'PASSWORD': '<DB_PASSWORD>',
         'HOST': 'postgresql-ironjerseys.alwaysdata.net',
         'PORT': '5432',
     }
