@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import logging
+from decouple import config
 import os
 from pathlib import Path
 
@@ -85,11 +86,11 @@ WSGI_APPLICATION = 'cestquoilouverture.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ironjerseys_cestquoilouverture', 
-        'HOST': 'postgresql-ironjerseys.alwaysdata.net',  
-        'PORT': '5432', 
-        'USER': os.getenv('DB_USER', 'default_user'), 
-        'PASSWORD': os.getenv('DB_PASSWORD', 'default_password')
+        'NAME': 'ironjerseys_cestquoilouverture',
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': 'postgresql-ironjerseys.alwaysdata.net',
+        'PORT': '5432',
     }
 }
 
