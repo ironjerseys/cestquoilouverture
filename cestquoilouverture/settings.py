@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'cestquoilouverture-dmethmd7dtfvbyb3.francecentral-01.azurewebsites.net',
+    'cestquoilouverture.com'
 ]
 
 
