@@ -1,10 +1,5 @@
-cestquoilouverture/__pycache__/settings.cpython-312.pyc
-cestquoilouverture/__pycache__/settings.cpython-312.pyc
+/staticfiles/
 /env
 cestquoilouverture/__pycache__/
-cestquoilouverture/.env
-
-# Ignorer les fichiers compilés Python
 __pycache__/
 *.pyc
-
