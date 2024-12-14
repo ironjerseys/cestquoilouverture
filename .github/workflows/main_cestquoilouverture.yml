@@ -22,9 +22,12 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
+          pip install -r requirements.txt
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Run Django collectstatic
+        run: |
+          source venv/bin/activate
+          python manage.py collectstatic --noinput
 
       # Inject secrets into environment variables
       - name: Set environment variables
@@ -33,15 +36,14 @@ jobs:
           echo "DBPASSWORD=${{ secrets.DBPASSWORD }}" >> $GITHUB_ENV
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: |
+          zip -r release.zip . -x venv/**\*
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
         with:
           name: python-app
-          path: |
-            release.zip
-            !venv/
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -58,6 +60,12 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+
+      - name: Install dependencies for deployment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
 
       - name: Set environment variables for deployment
         run: |
