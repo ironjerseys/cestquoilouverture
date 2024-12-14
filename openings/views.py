@@ -4,9 +4,11 @@ import chess
 import chess.svg
 import re
 from .models import Opening
+from django.middleware.csrf import CsrfViewMiddleware
 
 def opening_view(request):
     if request.method == 'POST':
+        print("Received POST data:", request.POST)
         try:
             # Récupère les données du formulaire
             opening_id = request.POST.get('opening_id')
@@ -42,6 +44,9 @@ def opening_view(request):
 
         except Opening.DoesNotExist:
             return JsonResponse({'error': 'Ouverture non trouvée'}, status=404)
+        except CsrfViewMiddleware as e:
+            print("CSRF error:", e)
+            return JsonResponse({'error': 'CSRF validation failed'}, status=403)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
     else:
