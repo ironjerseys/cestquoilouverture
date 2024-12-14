@@ -39,6 +39,10 @@
     <script>
         let currentIndex = 0; // Index actuel de la position
 
+        const getCsrfToken = () => {
+            return document.querySelector('[name=csrfmiddlewaretoken]').value;
+        };
+
         const updateBoard = async (newIndex) => {
             const form = document.getElementById('opening-form');
             const formData = new FormData(form);
@@ -47,6 +51,9 @@
             try {
                 const response = await fetch('', {
                     method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCsrfToken() // Ajout du token CSRF
+                    },
                     body: formData
                 });
 
