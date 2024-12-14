@@ -18,36 +18,35 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
+      - name: Create and start virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
-          pip install -r requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: Run Django collectstatic
         run: |
           source venv/bin/activate
           python manage.py collectstatic --noinput
 
-      - name: Run Django migrations
-        run: |
-          source venv/bin/activate
-          python manage.py migrate
-
+      # Inject secrets into environment variables
       - name: Set environment variables
         run: |
           echo "DBUSER=${{ secrets.DBUSER }}" >> $GITHUB_ENV
           echo "DBPASSWORD=${{ secrets.DBPASSWORD }}" >> $GITHUB_ENV
 
-      - name: Create deployment package
-        run: |
-          zip -r release.zip . -x venv/**\* .git/**\*
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
 
-      - name: Upload deployment artifact
+      - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
         with:
           name: python-app
-          path: release.zip
+          path: |
+            release.zip
+            !venv/
 
   deploy:
     runs-on: ubuntu-latest
@@ -62,10 +61,10 @@ jobs:
         with:
           name: python-app
 
-      - name: Extract deployment package
+      - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      - name: Set environment variables
+      - name: Set environment variables for deployment
         run: |
           echo "DBUSER=${{ secrets.DBUSER }}" >> $GITHUB_ENV
           echo "DBPASSWORD=${{ secrets.DBPASSWORD }}" >> $GITHUB_ENV
@@ -76,4 +75,4 @@ jobs:
         with:
           app-name: 'cestquoilouverture'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3280D8060C594471BBBC8FDCBC693576 }}
