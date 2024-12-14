@@ -60,6 +60,10 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = 'cestquoilouverture.urls'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://cestquoilouverture-dmethmd7dtfvbyb3.francecentral-01.azurewebsites.net',
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
