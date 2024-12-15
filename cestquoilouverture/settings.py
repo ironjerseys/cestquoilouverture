@@ -31,7 +31,7 @@ ALLOWED_HOSTS = [
     'cestquoilouverture-dmethmd7dtfvbyb3.francecentral-01.azurewebsites.net',
     'cestquoilouverture.com',
     'www.cestquoilouverture.com',
-    'https.cestquoilouverture.com',
+    'https://cestquoilouverture.com/',
 ]
 
 
