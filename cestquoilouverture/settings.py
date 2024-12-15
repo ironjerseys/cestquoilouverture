@@ -65,6 +65,8 @@ ROOT_URLCONF = 'cestquoilouverture.urls'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://cestquoilouverture-dmethmd7dtfvbyb3.francecentral-01.azurewebsites.net',
+    'https://cestquoilouverture.com',
+    'https://www.cestquoilouverture.com',
 ]
 
 TEMPLATES = [
