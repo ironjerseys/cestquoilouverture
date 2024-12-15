@@ -22,10 +22,8 @@
     </style>
 </head>
 <body>
-    <h1>C'est quoi l'ouverture</h1>
     <form id="opening-form" method="POST">
         {% csrf_token %}
-        <label for="opening-select">Choisir une ouverture :</label>
         <select id="opening-select" name="opening_id">
             {% for opening in openings %}
                 <option value="{{ opening.id }}">{{ opening.name }}</option>
