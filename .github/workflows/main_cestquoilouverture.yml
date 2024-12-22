@@ -32,6 +32,7 @@ jobs:
       # Inject secrets into environment variables
       - name: Set environment variables
         run: |
+          echo "DJANGO_ENV=prod" >> $GITHUB_ENV
           echo "DBUSER=${{ secrets.DBUSER }}" >> $GITHUB_ENV
           echo "DBPASSWORD=${{ secrets.DBPASSWORD }}" >> $GITHUB_ENV
 
@@ -69,6 +70,7 @@ jobs:
 
       - name: Set environment variables for deployment
         run: |
+          echo "DJANGO_ENV=prod" >> $GITHUB_ENV
           echo "DBUSER=${{ secrets.DBUSER }}" >> $GITHUB_ENV
           echo "DBPASSWORD=${{ secrets.DBPASSWORD }}" >> $GITHUB_ENV
 
