@@ -20,7 +20,6 @@ from django.urls import path, include
 from openings import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('openings/', include('openings.urls')),
     path('', views.opening_view, name='home'),
 ]
