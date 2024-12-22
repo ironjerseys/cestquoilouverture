@@ -24,17 +24,19 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
 
-      - name: Run Django collectstatic
-        run: |
-          source venv/bin/activate
-          python manage.py collectstatic --noinput
-
       # Inject secrets into environment variables
       - name: Set environment variables
         run: |
           echo "DJANGO_ENV=prod" >> $GITHUB_ENV
           echo "DBUSER=${{ secrets.DBUSER }}" >> $GITHUB_ENV
           echo "DBPASSWORD=${{ secrets.DBPASSWORD }}" >> $GITHUB_ENV
+
+      - name: Run Django collectstatic
+        env:
+          DJANGO_ENV: prod 
+        run: |
+          source venv/bin/activate
+          python manage.py collectstatic --noinput
 
       - name: Zip artifact for deployment
         run: |
