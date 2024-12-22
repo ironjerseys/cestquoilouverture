@@ -3,7 +3,7 @@ import os
 
 SECRET_KEY = os.getenv('SECRETKEY')
 
-DEBUG = 'True'
+DEBUG = 'False'
 
 ALLOWED_HOSTS = [
     'cestquoilouverture.com',
