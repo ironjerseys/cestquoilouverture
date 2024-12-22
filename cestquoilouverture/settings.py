@@ -20,15 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_-^#4p$lb1)$s2z0gec++03^c$c$!l#u@gswu)$zu$*f78brgy'
+SECRET_KEY = os.getenv('SECRETKEY')
 
 # DEBUG = os.getenv('DEBUG', 'False') == 'True'
-DEBUG = 'True'
+DEBUG = 'False'
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'cestquoilouverture-dmethmd7dtfvbyb3.francecentral-01.azurewebsites.net',
     'cestquoilouverture.com',
     'www.cestquoilouverture.com',
     'https://cestquoilouverture.com/',
