@@ -12,22 +12,25 @@
     <!-- Formulaire pour sélectionner une ouverture -->
     <form id="opening-form" method="POST">
         {% csrf_token %}
-        <select id="opening-select" name="opening_id">
-            {% for opening in openings %}
-                <option value="{{ opening.id }}">{{ opening.name }}</option>
-            {% endfor %}
-        </select>
-
-        <select id="variation-select" name="variation_id">
-            <option value="">-- Sélectionnez une variante --</option>
-        </select>
-
-        <!-- Boutons pour naviguer entre les positions -->
-        <button type="button" id="prev-move-btn">Précédent</button>
-        <button type="button" id="next-move-btn">Suivant</button>
+        <div id="select-container">
+            <select id="opening-select" name="opening_id">
+                {% for opening in openings %}
+                    <option value="{{ opening.id }}">{{ opening.name }}</option>
+                {% endfor %}
+            </select>
+    
+            <select id="variation-select" name="variation_id">
+                <option value="">-- Sélectionnez une variante --</option>
+            </select>
+        </div>
     </form>
     <!-- Conteneur pour afficher le plateau d'échecs -->
     <div id="chess-board"></div>
+
+    <div id="button-container">
+        <button type="button" id="prev-move-btn">Précédent</button>
+        <button type="button" id="next-move-btn">Suivant</button>
+    </div>
 
     <script>
         // Déclare une variable globale pour suivre l'index actuel de la position
