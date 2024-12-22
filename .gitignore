@@ -1,5 +1,9 @@
 /staticfiles/
 /env
-cestquoilouverture/__pycache__/
+cestquoilouverture/settings.pycestquoilouverture/__pycache__/
 __pycache__/
 *.pyc
+openings/__pycache__/views.cpython-312.pyc
+cestquoilouverture/settings.py
+cestquoilouverture/settings/dev.py
+openings/__pycache__/views.cpython-312.pyc
