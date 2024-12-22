@@ -5,6 +5,8 @@ SECRET_KEY = os.getenv('SECRETKEY')
 
 DEBUG = 'False'
 
+ROOT_URLCONF = 'cestquoilouverture.urls'
+
 ALLOWED_HOSTS = [
     'cestquoilouverture.com',
     'www.cestquoilouverture.com',
