@@ -16,23 +16,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRETKEY')
-
-# DEBUG = os.getenv('DEBUG', 'False') == 'True'
-DEBUG = 'False'
-
-ALLOWED_HOSTS = [
-    'cestquoilouverture.com',
-    'www.cestquoilouverture.com',
-    'https://cestquoilouverture.com/',
-]
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -83,23 +66,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'cestquoilouverture.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ironjerseys_cestquoilouverture',
-        'USER': os.getenv('DBUSER'),
-        'PASSWORD': os.getenv('DBPASSWORD'),
-        'HOST': 'postgresql-ironjerseys.alwaysdata.net',
-        'PORT': '5432',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
