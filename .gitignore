@@ -1,9 +1,15 @@
+# Ignorer les dossiers générés
 /staticfiles/
-/env
-cestquoilouverture/settings.pycestquoilouverture/__pycache__/
-__pycache__/
-*.pyc
-openings/__pycache__/views.cpython-312.pyc
+/env/
+/__pycache__/
+/*.pyc
+
+# Ignorer les fichiers et dossiers spécifiques
+openings/__pycache__/
+cestquoilouverture/__pycache__/
 cestquoilouverture/settings.py
 cestquoilouverture/settings/dev.py
-openings/__pycache__/views.cpython-312.pyc
+cestquoilouverture/settings/__pycache__/base.cpython-312.pyc
+cestquoilouverture/settings/__pycache__/__init__.cpython-312.pyc
+cestquoilouverture/settings/__pycache__/dev.cpython-312.pyc
+openings/migrations/__pycache__/0003_variation.cpython-312.pyc

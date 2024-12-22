@@ -6,3 +6,18 @@ class Opening(models.Model):
 
     class Meta:
         db_table = 'Openings'
+
+    def __str__(self):
+        return self.name
+
+
+class Variation(models.Model):
+    name = models.CharField(max_length=100)
+    moves = models.TextField()  # Liste des coups spécifiques à la variante
+    opening = models.ForeignKey(Opening, on_delete=models.CASCADE, related_name='variations')
+
+    class Meta:
+        db_table = 'Variations'
+
+    def __str__(self):
+        return f"{self.name} (Variante de {self.opening.name})"
