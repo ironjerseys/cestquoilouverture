@@ -85,6 +85,26 @@
             }
         };
 
+         /**
+         * Trie les options d'un élément <select> par ordre alphabétique.
+         * @param {string} selectId - L'ID du <select> à trier.
+         */
+        function sortSelectOptions(selectId) {
+            const selectElement = document.getElementById(selectId);
+            // Convertit la liste des options en un tableau
+            const options = Array.from(selectElement.options);
+
+            // Trie les options par texte
+            options.sort((a, b) => a.text.localeCompare(b.text));
+
+            // Supprime toutes les options existantes
+            selectElement.innerHTML = '';
+
+            // Ajoute les options triées
+            options.forEach(option => selectElement.add(option));
+        }
+
+
         /**
          * Gestionnaire pour le bouton "Précédent".
          * Réduit l'index de la position de 1 (minimum 0).
@@ -142,6 +162,9 @@
                 alert("Une erreur est survenue lors du chargement des variantes. Consultez la console pour plus de détails.");
             }
         });
+
+        sortSelectOptions('opening-select');
+        sortSelectOptions('variation-select');
 
         // Initialiser l'échiquier avec la première ouverture
         updateBoard(currentIndex);
