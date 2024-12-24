@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'traps/styles.css' %}">
 </head>
 <body>
+    {% include 'common/header.html' %}
+
     <!-- Formulaire pour sélectionner une ouverture -->
     <form id="trap-form" method="POST">
         {% csrf_token %}

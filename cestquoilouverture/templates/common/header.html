@@ -1,0 +1,10 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'common/header.css' %}">
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Openings</a></li>
+            <li><a href="{% url 'traps_view' %}">Traps</a></li>
+        </ul>
+    </nav>
+</header>
