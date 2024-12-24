@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from openings import views
+from openings import views as openings_views
+from traps import views as traps_views
 
 urlpatterns = [
-    path('openings/', include('openings.urls')),
-    path('', views.opening_view, name='home'),
+    path('openings/', include('openings.urls')),  # URL pour les ouvertures
+    path('traps/', include('traps.urls')),        # URL pour les pièges
+    path('', openings_views.opening_view, name='home'),  # URL racine affiche openings
 ]
+

@@ -1,4 +1,5 @@
 # Ignorer les dossiers générés
+cestquoilouverture/staticfiles/
 /staticfiles/
 /env/
 /__pycache__/
@@ -6,6 +7,8 @@
 
 # Ignorer les fichiers et dossiers spécifiques
 openings/__pycache__/
+traps/__pycache__/
+traps/migrations/__pycache__/
 cestquoilouverture/__pycache__/
 cestquoilouverture/settings.py
 cestquoilouverture/settings/dev.py
