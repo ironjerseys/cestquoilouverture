@@ -101,20 +101,20 @@ button:hover {
 
 @media (max-width: 768px) {
     #chess-board {
-        max-width: 90%; /* Réduit la largeur de la board sur mobile */
+        /* max-width: 90%;  */
     }
 
     button {
-        width: 90%; /* Les boutons prennent plus de place sur mobile */
+        width: 40%; 
     }
 }
 
 @media (max-width: 480px) {
     #chess-board {
-        max-width: 100%; /* Board prend toute la largeur sur petits écrans */
+        max-width: 100%; 
     }
 
     button {
-        font-size: 14px; /* Texte plus petit pour les boutons */
+        font-size: 14px; 
     }
 }
