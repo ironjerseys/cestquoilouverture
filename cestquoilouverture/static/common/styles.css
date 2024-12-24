@@ -42,6 +42,26 @@ body {
     color: #D1D1D1;
 }
 
+#select-container {
+    display: flex; /* Active flexbox */
+    justify-content: space-between; /* Place les boutons aux extrémités */
+    align-items: center; /* Aligne verticalement */
+    width: 100%; /* Prend toute la largeur disponible */
+    max-width: 400px; /* Limite la largeur pour un meilleur aspect */
+    box-sizing: border-box; /* Inclut les bordures et les marges dans la largeur totale */
+}
+
+select {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #262522;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #CCCCCC;
+    width: 45%;
+}
+
 #chess-board {
     display: flex;
     justify-content: center;
@@ -53,8 +73,6 @@ body {
 #chess-board svg {
     margin: auto;
     display: block;
-    border: 2px solid #333;
-    border-radius: 5px;
 }
 
 #button-container {
@@ -70,15 +88,10 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-}
-
-button, select {
-    margin: 10px;
-    padding: 10px 20px;
+    margin: 10px 0;
     background-color: #262522;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     color: #CCCCCC;
 }
 
